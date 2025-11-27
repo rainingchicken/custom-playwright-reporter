@@ -100,7 +100,6 @@ class CustomReporter implements Reporter {
       // Tests
       console.log(`::group::Tests`);
       console.table(stats.tests);
-      console.log("::endgroup::");
 
       // Test steps
       console.log(`::group::Test Steps`);

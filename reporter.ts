@@ -57,15 +57,13 @@ class CustomReporter implements Reporter {
     const path = test.titlePath().slice(0, -1);
     const topDescribe = path[0] || "(no describe)";
 
-    if (topDescribe != "(no describe)") {
-      if (!stats.describes[topDescribe]) {
-        stats.describes[topDescribe] = makeCounter();
-      }
-      const d = stats.describes[topDescribe];
-      d.total++;
-      d[result.status]++;
-      d.duration += result.duration;
+    if (!stats.describes[topDescribe]) {
+      stats.describes[topDescribe] = makeCounter();
     }
+    const d = stats.describes[topDescribe];
+    d.total++;
+    d[result.status]++;
+    d.duration += result.duration;
 
     // Test block
     stats.tests.total++;
@@ -96,10 +94,12 @@ class CustomReporter implements Reporter {
         console.table(d);
         console.log("::endgroup::");
       }
+      console.log("::endgroup::");
 
       // Tests
       console.log(`::group::Tests`);
       console.table(stats.tests);
+      console.log("::endgroup::");
 
       // Test steps
       console.log(`::group::Test Steps`);

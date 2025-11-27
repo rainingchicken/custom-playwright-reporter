@@ -1,0 +1,30 @@
+import { test, expect } from "@playwright/test";
+import { describe } from "node:test";
+
+describe("First describe", async () => {
+  test("has title", async ({ page }) => {
+    await page.goto("https://playwright.dev/");
+
+    // Expect a title "to contain" a substring.
+    await expect(page).toHaveTitle(/Playwright/);
+  });
+});
+describe("Second describe", async () => {
+  test("get started link", async ({ page }) => {
+    await test.step("First step", async () => {
+      await page.goto("https://playwright.dev/");
+    });
+
+    await test.step("Second step", async () => {
+      // Click the get started link.
+      await page.getByRole("link", { name: "Get started" }).click();
+    });
+
+    await test.step("Third step", async () => {
+      // Expects page to have a heading with the name of Installation.
+      await expect(
+        page.getByRole("heading", { name: "Installation" })
+      ).toBeVisible();
+    });
+  });
+});

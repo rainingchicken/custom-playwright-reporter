@@ -87,28 +87,27 @@ class CustomReporter implements Reporter {
 
   onEnd() {
     for (const [file, stats] of this.fileStats.entries()) {
-      console.group(`${file}`);
+      console.log(`::group::${file}`);
 
       // Describe
-      console.groupCollapsed("Describe Blocks");
+      console.log(`::group::Describe`);
       for (const [describeName, d] of Object.entries(stats.describes)) {
         console.groupCollapsed(describeName);
         console.table(d);
-        console.groupEnd();
+        console.log("::endgroup::");
       }
-      console.groupEnd();
 
       // Tests
-      console.groupCollapsed("Tests");
+      console.log(`::group::Tests`);
       console.table(stats.tests);
-      console.groupEnd();
+      console.log("::endgroup::");
 
       // Test steps
-      console.groupCollapsed("Test Steps");
+      console.log(`::group::Test Steps`);
       console.table(stats.steps);
-      console.groupEnd();
+      console.log("::endgroup::");
 
-      console.groupEnd();
+      console.log("::endgroup::");
     }
   }
 }

@@ -87,6 +87,11 @@ class CustomReporter implements Reporter {
     );
 
     process.stdout.write(table.toString() + "\n");
+
+    // Tests
+    console.log(`::group::Tests`);
+    console.table(stats.tests);
+    console.log("::endgroup::");
   }
 
   onStepEnd(test: TestCase, result: TestResult, step: TestStep) {
@@ -112,18 +117,6 @@ class CustomReporter implements Reporter {
         console.table(d);
         console.log("::endgroup::");
       }
-      console.log("::endgroup::");
-
-      // Tests
-      console.log(`::group::Tests`);
-      console.table(stats.tests);
-      console.log("::endgroup::");
-
-      // Test steps
-      console.log(`::group::Test Steps`);
-      console.table(stats.steps);
-      console.log("::endgroup::");
-
       console.log("::endgroup::");
     }
   }

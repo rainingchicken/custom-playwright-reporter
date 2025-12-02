@@ -1,26 +1,32 @@
 import { test, expect } from "@playwright/test";
-import { describe } from "node:test";
 
-describe("First describe", async () => {
-  test("has title", async ({ page }) => {
+test.describe("Describe1", async () => {
+  test("Describe1 Test1", async ({ page }) => {
     await page.goto("https://playwright.dev/");
 
     // Expect a title "to contain" a substring.
     await expect(page).toHaveTitle(/Playwright/);
   });
 });
-describe("Second describe", async () => {
-  test("get started link", async ({ page }) => {
-    await test.step("First step", async () => {
+test.describe("Describ2", async () => {
+  test("Describe2 Test1", async ({ page }) => {
+    await test.step("Describe2 Test1 Step1", async () => {
       await page.goto("https://playwright.dev/");
     });
 
-    await test.step("Second step", async () => {
+    await test.step("Describe2 Test1 Step2", async () => {
       // Click the get started link.
-      await page.getByRole("link", { name: "Get started" }).click();
+      await page.getByRole("link", { name: "Get starteddd" }).click();
     });
 
-    await test.step("Third step", async () => {
+    await test.step("Describe2 Test1 Ste3", async () => {
+      // Expects page to have a heading with the name of Installation.
+      await expect(
+        page.getByRole("heading", { name: "Installation" })
+      ).toBeVisible();
+    });
+
+    await test.step("Describe2 Test1 Step4", async () => {
       // Expects page to have a heading with the name of Installation.
       await expect(
         page.getByRole("heading", { name: "Installation" })
